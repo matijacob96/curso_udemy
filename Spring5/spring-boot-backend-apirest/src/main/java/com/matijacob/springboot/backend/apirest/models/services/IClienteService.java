@@ -1,6 +1,7 @@
 package com.matijacob.springboot.backend.apirest.models.services;
 
 import com.matijacob.springboot.backend.apirest.models.entity.Cliente;
+import com.matijacob.springboot.backend.apirest.models.entity.Region;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -18,4 +19,6 @@ public interface IClienteService {
     public void delete(Long id);
 
     public Cliente findById(Long id);
+
+    public List<Region> findAllRegiones();
 }

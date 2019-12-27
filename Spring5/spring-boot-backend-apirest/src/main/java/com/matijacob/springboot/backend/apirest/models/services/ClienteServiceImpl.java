@@ -2,6 +2,7 @@ package com.matijacob.springboot.backend.apirest.models.services;
 
 import com.matijacob.springboot.backend.apirest.models.dao.IClienteDao;
 import com.matijacob.springboot.backend.apirest.models.entity.Cliente;
+import com.matijacob.springboot.backend.apirest.models.entity.Region;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +33,12 @@ public class ClienteServiceImpl implements IClienteService {
     @Transactional(readOnly = true)
     public Cliente findById(Long id) {
         return clienteDao.findById(id).orElse(null);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Region> findAllRegiones() {
+        return clienteDao.findAllRegiones();
     }
 
     @Override
