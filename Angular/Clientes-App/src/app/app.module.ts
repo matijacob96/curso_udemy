@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -20,7 +20,8 @@ import { DetalleComponent } from './clientes/detalle/detalle.component';
 import { LoginComponent } from './usuarios/login.component';
 import { AuthGuard } from './usuarios/guard/auth.guard';
 import { RoleGuard } from './usuarios/guard/role.guard';
-
+import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
+import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
 
 
 registerLocaleData(localeES, 'es-AR');
@@ -56,7 +57,10 @@ const routes: Routes = [
     MatDatepickerModule, 
     MatMomentDateModule
   ],
-  providers: [ClienteService, {provide: LOCALE_ID, useValue: 'es-AR' }],
+  providers: [ClienteService, 
+    {provide: LOCALE_ID, useValue: 'es-AR' }, 
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
