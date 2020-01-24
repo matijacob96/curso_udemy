@@ -42,6 +42,34 @@
                                 <img *ngIf="cliente?.foto" src="http://localhost:8080/api/uploads/img/{{cliente.foto}}" alt="{{cliente.foto}}" class="img-thumbnail rounded">
                             </div>
                         </div>
+                        <div class="row">
+                            <div *ngIf="cliente.facturas.length==0" class="alert alert-info my-4">
+                                No hay facturas asignadas para el cliente {{cliente.nombre}} {{cliente.apellido}}
+                            </div>
+                            <table *ngIf="cliente.facturas.length>0" class="table table-bordered table-striped my-4">
+                                <thead>
+                                    <tr>
+                                        <th>Folio</th>
+                                        <th>Descripcion</th>
+                                        <th>Fecha</th>
+                                        <th>Total</th>
+                                        <th>Detalle</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let factura of cliente.facturas">
+                                        <th>{{factura.id}}</th>
+                                        <th>{{factura.descripcion}}</th>
+                                        <th>{{factura.createAt}}</th>
+                                        <th>{{factura.total}}</th>
+                                        <td><button class="btn btn-primary btn-sm" type="button" [routerLink]="['/facturas',factura.id]">Ver Detalle</button></td>
+                                        <td><button class="btn btn-danger btn-sm" type="button" (click)="delete(factura)">Eliminar</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
                     </div>
 
                 </div>

@@ -1,5 +1,7 @@
 package com.matijacob.springboot.backend.apirest.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,6 +15,8 @@ public class ItemFactura implements Serializable {
     private Integer cantidad;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    @JoinColumn(name = "producto_id")
     private Producto producto;
 
 
@@ -30,6 +34,14 @@ public class ItemFactura implements Serializable {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public Double getImporte(){

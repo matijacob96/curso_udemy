@@ -1,5 +1,6 @@
 package com.matijacob.springboot.backend.apirest.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Factura implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "factura_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private List<ItemFactura> items;
 
     public Factura() {
@@ -33,6 +35,7 @@ public class Factura implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler","facturas"})
     private Cliente cliente;
 
     @PrePersist
