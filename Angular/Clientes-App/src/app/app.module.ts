@@ -10,11 +10,11 @@ import { PaginatorComponent } from './paginator/paginator.component';
 import { FormComponent } from './clientes/form.component';
 import { ClienteService } from './clientes/cliente.service';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es-AR';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDatepickerModule} from '@angular/material';
+import {MatDatepickerModule, MatButtonModule, MatRippleModule, MatAutocompleteModule, MatInputModule} from '@angular/material';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import { DetalleComponent } from './clientes/detalle/detalle.component';
 import { LoginComponent } from './usuarios/login.component';
@@ -24,6 +24,7 @@ import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
 import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
 import { DetalleFacturaComponent } from './facturas/detalle-factura.component';
 import { FacturasComponent } from './facturas/facturas.component';
+import { MatFormFieldModule} from '@angular/material';
 
 
 registerLocaleData(localeES, 'es-AR');
@@ -61,7 +62,8 @@ const routes: Routes = [
     FormsModule,
     BrowserAnimationsModule,
     MatDatepickerModule, 
-    MatMomentDateModule
+    MatMomentDateModule,
+    ReactiveFormsModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule    
   ],
   providers: [ClienteService, 
     {provide: LOCALE_ID, useValue: 'es-AR' }, 
@@ -70,3 +72,5 @@ const routes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
