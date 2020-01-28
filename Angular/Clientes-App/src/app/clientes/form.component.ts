@@ -11,11 +11,11 @@ import { Region } from './region';
 })
 export class FormComponent implements OnInit {
 
-  private cliente: Cliente = new Cliente();
-  private regiones: Region[];
-  private titulo: String = "Crear Cliente";
+  public cliente: Cliente = new Cliente();
+  public regiones: Region[];
+  public titulo: String = "Crear Cliente";
 
-  private errores: String[];
+  public errores: String[];
 
   constructor(
     private clienteService: ClienteService,
@@ -54,6 +54,7 @@ export class FormComponent implements OnInit {
 
   update(): void {
     console.log(this.cliente);
+    this.cliente.facturas = null;
     this.clienteService.update(this.cliente).subscribe( json => {
       this.router.navigate(['/clientes']);
       swal.fire('Cliente Actualizado',`${json.mensaje}: ${json.cliente.apellido} ${json.cliente.nombre}`, 'success');

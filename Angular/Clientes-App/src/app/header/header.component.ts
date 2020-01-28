@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent{
     title:string = 'App Angular';
 
-    constructor(private authService: AuthService,
+    constructor(public authService: AuthService,
         private router: Router){
 
     }

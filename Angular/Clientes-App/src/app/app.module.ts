@@ -37,8 +37,8 @@ const routes: Routes = [
   {path: 'clientes/form', component: FormComponent, canActivate: [RoleGuard], data: {role: 'ROLE_ADMIN'} },
   {path: 'clientes/form/:id', component: FormComponent, canActivate: [RoleGuard], data: {role: 'ROLE_ADMIN'} },
   {path: 'login', component: LoginComponent},
-  {path: 'facturas/:id', component: DetalleFacturaComponent},
-  {path: 'facturas/form/:clienteId', component: FacturasComponent}
+  {path: 'facturas/:id', component: DetalleFacturaComponent, canActivate: [RoleGuard], data: {role: 'ROLE_USER'}},
+  {path: 'facturas/form/:clienteId', component: FacturasComponent, canActivate: [RoleGuard], data: {role: 'ROLE_ADMIN'}}
 ];
 
 @NgModule({

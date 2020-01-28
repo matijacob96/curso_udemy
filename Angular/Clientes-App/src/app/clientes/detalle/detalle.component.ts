@@ -17,13 +17,13 @@ import Swal from 'sweetalert2';
 export class DetalleComponent implements OnInit {
   @Input() cliente: Cliente;
   titulo: string = "Detalle del cliente";
-  private fotoSeleccionada: File;
+  public fotoSeleccionada: File;
   progress: number = 0;
 
   constructor(
     private clienteService: ClienteService,
-    private modalService: ModalService,
-    private authService: AuthService,
+    public modalService: ModalService,
+    public authService: AuthService,
     private facturaService: FacturaService
   ) {}
 

@@ -7,6 +7,7 @@ import { tap } from "rxjs/operators";
 import { ActivatedRoute } from "@angular/router";
 import { ModalService } from './detalle/modal.service';
 import { AuthService } from '../usuarios/auth.service';
+import { URL_BACKEND } from '../config/config';
 
 @Component({
   selector: "app-clientes",
@@ -18,11 +19,13 @@ export class ClientesComponent implements OnInit {
 
   clienteSeleccionado: Cliente;
 
+  urlBackend: string = URL_BACKEND;
+
   constructor(
     private clienteService: ClienteService,
     private activatedRoute: ActivatedRoute,
-    private modalService: ModalService,
-    private authService: AuthService
+    public modalService: ModalService,
+    public authService: AuthService
   ) {}
 
   ngOnInit() {
